@@ -1,6 +1,5 @@
-package backEndQuickBank.exchangeAPI.controller;
+package backEndQuickBank.controlleur;
 
-import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
@@ -15,13 +14,13 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @RestController
-@RequestMapping(path = "/convertion")
-public class ExchangeEndPoint {
-	
+@RequestMapping("/main")
+public class MainControlleur {
+
 	@GetMapping
 	public JsonNode getConnection(
-			@RequestParam(name ="us") String unit,
-			@RequestParam("ud") String unitDest) throws Exception 
+			@RequestParam("unitSrc") String unit,
+			@RequestParam("unitDest") String unitDest) throws Exception 
 	{
 		HttpRequest request = HttpRequest.newBuilder()
 				.uri(URI.create("https://exchangerate-api.p.rapidapi.com/rapid/latest/"+unit))
@@ -46,5 +45,4 @@ public class ExchangeEndPoint {
 		
 		return jsonresultat2;
 	}
-	
 }
